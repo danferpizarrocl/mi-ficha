@@ -1,5 +1,5 @@
 /* Mi Ficha: funciona sin conexion. La pagina, el manifiesto y los iconos se piden primero a internet. */
-var CACHE='mi-ficha-v4';
+var CACHE='mi-ficha-v5';
 var BASE=['./','./index.html','./manifest-v2.webmanifest','./icon-v2-192.png','./icon-v2-512.png','./maskable-v2-512.png','./apple-touch-icon-v2.png'];
 self.addEventListener('install',function(e){
   e.waitUntil(caches.open(CACHE).then(function(c){return Promise.all(BASE.map(function(u){return c.add(new Request(u,{cache:'reload'}))}))}).then(function(){return self.skipWaiting()}));

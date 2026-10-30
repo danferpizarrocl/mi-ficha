@@ -158,7 +158,6 @@ textarea{width:100%;height:120px;font:14px monospace;padding:10px;border:2px sol
   </div>
   <div class="box" id="bxCont"><div class="bt"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg><span class="u">Contactos de emergencia</span></div><div id="fCont"></div></div>
   <div class="box" id="bxEnf"><div class="bt"><svg class="ico" aria-hidden="true"><use href="#i-steth"/></svg><span class="u">Enfermedades crónicas</span></div><div id="fEnf"></div></div>
-  <div class="box" id="bxMed"><div class="bt"><svg class="ico" aria-hidden="true"><use href="#i-cross"/></svg><span class="u">Médico tratante</span></div><div id="fMed"></div></div>
   <div class="box" id="bxDial"><div class="bt"><svg class="ico" aria-hidden="true"><use href="#i-drop"/></svg><span class="u">Diálisis</span></div><div id="fDial"></div><div id="fExtras"></div></div>
   <div class="box" id="bxMarca"><div class="bt"><svg class="ico" aria-hidden="true"><use href="#i-pulse"/></svg><span class="u">Marcapaso</span></div><div id="fMarca"></div></div>
 </section>
@@ -190,6 +189,18 @@ textarea{width:100%;height:120px;font:14px monospace;padding:10px;border:2px sol
     </div>
   </div>
   <div class="box">
+    <div class="bt"><svg class="ico" aria-hidden="true"><use href="#i-cross"/></svg><span class="u">Médico tratante</span></div>
+    <div class="note" style="margin-top:0">Es el médico que realizó la operación del marcapaso. Se ve en Marcapaso y en Mostrar ficha.</div>
+    <div id="medView"></div>
+    <button class="pri" id="medEdit">Cambiar</button>
+    <div class="box" id="medForm" style="display:none">
+      <label for="medN">Nombre</label><input type="text" id="medN" autocomplete="off">
+      <label for="medI">Institución</label><input type="text" id="medI" autocomplete="off">
+      <button class="pri" id="medSave">Guardar</button>
+      <button class="sec" id="medCancel">Cancelar</button>
+    </div>
+  </div>
+  <div class="box">
     <div class="bt"><svg class="ico" aria-hidden="true"><use href="#i-palette"/></svg><span class="u">Color de la app</span></div>
     <div class="sws">
       <button class="sw" data-tema="rosado"><span class="dot" style="background:#c2548a"></span>Rosado</button>
@@ -205,7 +216,7 @@ textarea{width:100%;height:120px;font:14px monospace;padding:10px;border:2px sol
     <input type="file" id="fileIn" accept=".json,application/json" style="display:none">
     <div class="ok" id="msg"></div>
   </div>
-  <div class="note" id="ver" style="text-align:center;margin:0 0 8px">Versión 4</div>
+  <div class="note" id="ver" style="text-align:center;margin:0 0 8px">Versión 5</div>
 </section>
 
 </main>
@@ -308,6 +319,7 @@ function enfHtml(s){
 }
 function renderDatos(){
   var di=D.dialisis,m=D.marcapaso,md=D.medico,h,i;
+  $("medView").innerHTML=md.nombre?'<div class="box" style="margin-bottom:12px"><div class="val" style="margin-bottom:2px">'+esc(md.nombre)+'</div>'+(md.institucion?'<div class="lab" style="margin:0">'+esc(md.institucion)+'</div>':'')+'</div>':'<div class="note">Sin dato</div>';
   h="";
   if(di.lugar)h+=F("drop","Lugar",di.lugar);
   if(di.direccion)h+=F("pin","Dirección",di.direccion);
@@ -315,10 +327,11 @@ function renderDatos(){
   if(di.horario)h+=F("clock","Horario de diálisis",di.horario,di.nota_horario,"sm");
   $("vistaDialBase").innerHTML=h;
   h="";
-  if(m.marca||m.equipo||m.modelo||m.serie||m.fecha_operacion){
+  if(m.marca||m.equipo||m.modelo||m.serie||m.fecha_operacion||md.nombre){
     h+='<div class="box">';
     if(m.marca)h+=LV("Marca",m.marca);if(m.equipo)h+=LV("Equipo",m.equipo);if(m.modelo)h+=LV("Modelo",m.modelo);
     if(m.serie)h+=LV("Número de serie",m.serie);if(m.fecha_operacion)h+=LV("Fecha de implante",m.fecha_operacion);
+    if(md.nombre)h+=LV("Médico tratante",md.nombre+(md.institucion?" · "+md.institucion:""));
     h+='</div>';
   }
   if(m.electrodos.length){
@@ -329,12 +342,9 @@ function renderDatos(){
   $("vistaMarca").innerHTML=h;
   h="";
   for(i=0;i<D.enfermedades.length;i++)h+='<div class="fld"><div class="fv" style="font-size:24px">'+enfHtml(D.enfermedades[i])+'</div></div>';
-  if(md.nombre)h+=F("cross","Médico tratante",md.nombre,md.institucion,"md");
   $("vistaEnf").innerHTML=h;
   h="";for(i=0;i<D.enfermedades.length;i++)h+='<div class="item">'+enfHtml(D.enfermedades[i])+'</div>';
   $("fEnf").innerHTML=h;$("bxEnf").style.display=h?"":"none";
-  h="";if(md.nombre)h='<div class="val">'+esc(md.nombre)+(md.institucion?' · '+esc(md.institucion):'')+'</div>';
-  $("fMed").innerHTML=h;$("bxMed").style.display=h?"":"none";
   h="";
   if(di.lugar)h+='<div class="val">'+esc(di.lugar)+'</div>';
   if(di.direccion)h+=LV("Dirección",di.direccion);
@@ -347,6 +357,7 @@ function renderDatos(){
   if(m.marca||m.equipo)h+='<div class="val">'+esc((m.marca+" "+m.equipo).trim())+'</div>';
   if(m.modelo||m.serie)h+=LV("Modelo / Serie",(m.modelo+(m.modelo&&m.serie?" / ":"")+m.serie));
   if(m.fecha_operacion)h+=LV("Fecha de operación",m.fecha_operacion);
+  if(md.nombre)h+=LV("Médico tratante",md.nombre+(md.institucion?" · "+md.institucion:""));
   if(m.electrodos.length){h+='<div class="lab">Electrodos</div>';for(i=0;i<m.electrodos.length;i++)h+='<div class="item" style="font-size:18px">'+esc(m.electrodos[i].medida)+(m.electrodos[i].serie?' · '+esc(m.electrodos[i].serie):'')+'</div>'}
   $("fMarca").innerHTML=h;$("bxMarca").style.display=h?"":"none";
   var hayDatos=D.nombre||D.correo||D.cel||D.dir;
@@ -354,6 +365,14 @@ function renderDatos(){
   $("bxCont").style.display=D.contactos.length?"":"none";
   $("vacio").style.display=(!hayDatos&&!D.contactos.length&&!D.enfermedades.length&&!di.lugar&&!m.marca)?"block":"none";
 }
+function abrirMed(){$("medN").value=D.medico.nombre||"";$("medI").value=D.medico.institucion||"";$("medForm").style.display="block";$("medEdit").style.display="none";$("medN").focus()}
+function cerrarMed(){$("medForm").style.display="none";$("medEdit").style.display="block"}
+$("medEdit").onclick=abrirMed;$("medCancel").onclick=cerrarMed;
+$("medSave").onclick=function(){
+  var n=$("medN").value.trim(),i=$("medI").value.trim();
+  if(!n){ask("Escribe el nombre del médico");return}
+  ask("¿Seguro que quieres cambiar el médico que realizó la operación del marcapaso?",function(){D.medico={nombre:n,institucion:i};save();render();cerrarMed()});
+};
 function abrirForm(i){
   editIdx=i;var c=i>=0?D.contactos[i]:null;
   $("fNom").value=c?c.n:"";$("fTel").value=c?c.t:"";
