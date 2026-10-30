@@ -83,6 +83,10 @@ label{display:block;font-size:17px;color:var(--ink2);margin-bottom:4px}
 .sw{font:inherit;font-size:18px;background:#fff;border:3px solid var(--line);border-radius:16px;padding:12px 4px;color:var(--ink);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px}
 .sw.sel{border-color:var(--ink);font-weight:700}
 .dot{width:34px;height:34px;border-radius:50%}
+.hold{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;width:100%;margin-top:12px;padding:14px;border-radius:14px;border:2px solid var(--acc);background:#fff;color:var(--accd);font:inherit;font-size:19px;font-weight:700;cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.hold .fill{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--acc);opacity:.35}
+.hold.go .fill{width:100%;transition:width 1.5s linear}
+.hold .lbl{position:relative;display:flex;align-items:center;gap:8px}
 textarea{width:100%;height:120px;font:14px monospace;padding:10px;border:2px solid var(--line);border-radius:12px;margin-bottom:10px}
 #dlg{display:none;position:fixed;inset:0;background:rgba(40,30,60,.45);align-items:center;justify-content:center;padding:20px;z-index:9}
 #dlg .m{background:#fff;border-radius:20px;padding:20px;max-width:380px;width:100%}
@@ -216,7 +220,7 @@ textarea{width:100%;height:120px;font:14px monospace;padding:10px;border:2px sol
     <input type="file" id="fileIn" accept=".json,application/json" style="display:none">
     <div class="ok" id="msg"></div>
   </div>
-  <div class="note" id="ver" style="text-align:center;margin:0 0 8px">Versión 5</div>
+  <div class="note" id="ver" style="text-align:center;margin:0 0 8px">Versión 6</div>
 </section>
 
 </main>
@@ -294,7 +298,7 @@ function render(){
     var c=D.contactos[i];
     h+='<div class="box"><div class="val" style="margin-bottom:4px">'+esc(c.n)+''+'</div><div class="val" style="font-weight:400;margin-bottom:0">'+esc(c.t)+'</div><div class="act"><button data-ed="'+i+'">'+(c.fijo?'Editar número':'Editar')+'</button>'+(c.fijo?'':'<button class="danger" data-del="'+i+'">Eliminar</button>')+'</div></div>';
     f+='<div class="item"><b>'+esc(c.n)+'</b><br>'+esc(c.t)+'</div>';
-    v+='<div class="fld"><div class="fv">'+esc(c.n)+'</div><div class="fl" style="margin:8px 0 0;font-size:25px;color:var(--ink)">'+IPH+'<span>'+esc(c.t)+'</span></div></div>';
+    v+='<div class="fld"><div class="fv">'+esc(c.n)+'</div><div class="fl" style="margin:8px 0 0;font-size:25px;color:var(--ink)">'+IPH+'<span>'+esc(c.t)+'</span></div><button class="hold" data-tel="'+esc(c.t)+'" aria-label="Llamar a '+esc(c.n)+'. Mantén apretado un segundo y medio"><span class="fill"></span><span class="lbl">'+IPH+'Llamar · mantén apretado</span></button></div>';
   }
   $("listaCont").innerHTML=h;$("fCont").innerHTML=f;$("vistaCont").innerHTML=v;
   var eh="",ev="",ef="";
@@ -307,6 +311,19 @@ function render(){
   $("exList").innerHTML=eh;$("vistaDial").innerHTML=ev;
   renderDatos();
 }
+function llamar(n){location.href="tel:"+n}
+(function(){
+  var box=$("vistaCont"),tm=null,cur=null;
+  function stop(){if(tm){clearTimeout(tm);tm=null}if(cur){cur.classList.remove("go");cur=null}}
+  box.addEventListener("pointerdown",function(e){
+    var b=e.target.closest(".hold");if(!b)return;
+    e.preventDefault();stop();cur=b;void b.offsetWidth;b.classList.add("go");
+    tm=setTimeout(function(){var n=b.getAttribute("data-tel").replace(/[^\d+]/g,"");stop();try{if(navigator.vibrate)navigator.vibrate(120)}catch(x){}llamar(n)},1500);
+  });
+  ["pointerup","pointercancel"].forEach(function(ev){box.addEventListener(ev,stop)});
+  box.addEventListener("pointerleave",stop,true);
+  box.addEventListener("contextmenu",function(e){if(e.target.closest(".hold"))e.preventDefault()});
+})();
 
 function IC(n){return '<svg class="ico" aria-hidden="true"><use href="#i-'+n+'"/></svg>'}
 function F(ic,lab,val,sm,cls){return '<div class="fld"><div class="fl">'+IC(ic)+'<span>'+esc(lab)+'</span></div><div class="fv'+(cls?' '+cls:'')+'">'+esc(val)+(sm?'<small>'+esc(sm)+'</small>':'')+'</div></div>'}
