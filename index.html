@@ -216,7 +216,7 @@ textarea{width:100%;height:120px;font:14px monospace;padding:10px;border:2px sol
     <input type="file" id="fileIn" accept=".json,application/json" style="display:none">
     <div class="ok" id="msg"></div>
   </div>
-  <div class="note" id="ver" style="text-align:center;margin:0 0 8px">Versión 6</div>
+  <div class="note" id="ver" style="text-align:center;margin:0 0 8px">Versión 7</div>
 </section>
 
 </main>
@@ -286,7 +286,7 @@ function fitOne(el,max,min){
   el.style.whiteSpace="nowrap";var s=max;el.style.fontSize=s+"px";
   while(el.scrollWidth>el.clientWidth&&s>min){s--;el.style.fontSize=s+"px"}
 }
-function fitCorreo(){fitOne($("dCorreo"),22,12);fitOne($("fCorreo"),22,12)}
+function fitCorreo(){fitOne($("dCorreo"),22,12);fitOne($("fCorreo"),22,12);fitOne($("dNombre"),28,12);fitOne($("fNombre"),26,12)}
 window.addEventListener("resize",fitCorreo);
 function aplicarTema(){
   document.documentElement.setAttribute("data-t",D.tema);
