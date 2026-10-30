@@ -216,7 +216,7 @@ textarea{width:100%;height:120px;font:14px monospace;padding:10px;border:2px sol
     <input type="file" id="fileIn" accept=".json,application/json" style="display:none">
     <div class="ok" id="msg"></div>
   </div>
-  <div class="note" id="ver" style="text-align:center;margin:0 0 8px">Versión 5</div>
+  <div class="note" id="ver" style="text-align:center;margin:0 0 8px">Versión 6</div>
 </section>
 
 </main>
@@ -265,6 +265,7 @@ function show(id){
   var nb=document.querySelectorAll("nav button");
   for(var j=0;j<nb.length;j++){var g=nb[j].getAttribute("data-go");nb[j].classList.toggle("on",g===id||(g==="inicio"&&inner.indexOf(id)>-1))}
   document.querySelector("main").scrollTop=0;
+  fitCorreo();
 }
 function go(id){
   if(id===cur)return;
@@ -280,6 +281,13 @@ function go(id){
 }
 window.addEventListener("popstate",function(e){show((e.state&&e.state.s)||"inicio")});
 document.addEventListener("click",function(e){var b=e.target.closest("[data-go]");if(b)go(b.getAttribute("data-go"))});
+function fitOne(el,max,min){
+  if(!el||!el.offsetParent)return;
+  el.style.whiteSpace="nowrap";var s=max;el.style.fontSize=s+"px";
+  while(el.scrollWidth>el.clientWidth&&s>min){s--;el.style.fontSize=s+"px"}
+}
+function fitCorreo(){fitOne($("dCorreo"),22,12);fitOne($("fCorreo"),22,12)}
+window.addEventListener("resize",fitCorreo);
 function aplicarTema(){
   document.documentElement.setAttribute("data-t",D.tema);
   var s=document.querySelectorAll(".sw");for(var i=0;i<s.length;i++)s[i].classList.toggle("sel",s[i].getAttribute("data-tema")===D.tema);
@@ -433,7 +441,7 @@ $("fileIn").onchange=function(){
   r.readAsText(f);this.value="";
 };
 aplicarTema();render();
-try{if("serviceWorker" in navigator&&location.protocol.indexOf("http")===0)navigator.serviceWorker.register("./sw.js")}catch(e){}
+try{if("serviceWorker" in navigator&&location.protocol.indexOf("http")===0)navigator.serviceWorker.register("./sw.js")}catch(e){}fitCorreo();
 try{history.replaceState({s:"inicio"},"","#inicio")}catch(e){}
 </script>
 </body>
