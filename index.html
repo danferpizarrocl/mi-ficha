@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es" data-t="rosado">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Mi Ficha</title>
+<link rel="icon" type="image/png" sizes="192x192" href="data:image/png;base64,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">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<meta name="theme-color" content="#c2548a">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--bg:#fff7f9;--card:#fbe4ed;--card2:#f6d3e2;--line:#e5b3c8;--ink:#3b1d5a;--ink2:#6b4a86;--acc:#c2548a;--accd:#9c3a6b;--white:#fff}
+[data-t="azul"]{--bg:#f3f8ff;--card:#dcebfb;--card2:#c8defa;--line:#9fc3ea;--ink:#12305a;--ink2:#41638f;--acc:#2f6fc0;--accd:#1f528f}
+[data-t="verde"]{--bg:#f3fbf5;--card:#dcf1e2;--card2:#c6e8d1;--line:#98cfa9;--ink:#163d27;--ink2:#41705a;--acc:#2f9a5c;--accd:#1f7442}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body{display:flex;flex-direction:column;max-width:520px;margin:0 auto}
+header{padding:16px 18px 10px;text-align:center;font-size:24px;font-weight:700;border-bottom:2px solid var(--line);background:var(--bg)}
+main{flex:1;overflow-y:auto;padding:16px 16px 0;display:flex;flex-direction:column}
+main>section{flex-shrink:0;margin-bottom:16px}
+section{display:none}section.on{display:block}
+section.full.on{display:flex;flex:1 0 auto;flex-direction:column}
+.ico{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.12em}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;text-align:left;background:var(--card);border:2px solid var(--line);border-radius:20px;padding:16px;color:var(--ink);font:inherit;cursor:pointer}
+.btn:active{background:var(--card2)}
+.big{min-height:130px;margin-bottom:14px}
+.h{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%}
+.h .ic{font-size:64px;color:var(--accd);display:inline-flex;line-height:1}
+.h.rev{justify-content:flex-start;gap:18px}
+.big.datos{flex:1.4 0 auto;min-height:210px}
+.big.datos .ic{font-size:104px}
+.big.datos .u{font-size:40px}
+.u{font-weight:700;line-height:1.35}
+.h .u{font-size:30px}
+.t{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center}
+.t .ic{font-size:44px;color:var(--accd);display:inline-flex;line-height:1}
+.t .u{font-size:21px}
+.row{flex:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;min-height:260px}
+.col{display:flex;flex-direction:column;gap:14px}
+.col .btn{flex:1;padding:12px 8px}
+.row>.btn{padding:12px 8px}
+nav{display:grid;grid-template-columns:repeat(3,1fr);border-top:2px solid var(--line);background:var(--card)}
+nav button{background:none;border:0;padding:10px 0 12px;font:inherit;font-size:15px;color:var(--ink2);cursor:pointer}
+nav button .ic{display:block;font-size:30px;margin-bottom:2px}
+nav button.on{color:var(--accd);font-weight:700;background:var(--card2)}
+h2{margin:0 0 14px;font-size:26px;display:flex;align-items:center;gap:10px}
+h2 .ic{font-size:30px;color:var(--accd);display:inline-flex}
+h2 .u{font-size:26px}
+.panel{flex:1;display:flex;flex-direction:column;gap:12px;background:#fff;border:2px solid var(--line);border-radius:22px;padding:16px}
+.panel h2{margin:0 0 2px}
+.fld{flex:1 0 auto;min-height:92px;background:var(--card);border-radius:18px;padding:14px 16px;display:flex;flex-direction:column;justify-content:center}
+.fl{display:flex;align-items:center;gap:8px;font-size:19px;color:var(--ink2);margin-bottom:6px}
+.fl .ico{font-size:24px;color:var(--accd)}
+.fv{font-size:28px;font-weight:700;word-break:break-word}
+.fv.sm{font-size:25px}
+.fv.md{font-size:24px}
+.fv small{display:block;font-size:17px;font-weight:400;color:var(--ink2);margin-top:4px}
+.stk{position:sticky;bottom:0;background:var(--bg);padding:10px 0 0;margin-bottom:-16px;padding-bottom:16px}
+.panel .stk{background:#fff;margin:0 -16px -16px;padding:10px 16px 16px;border-radius:0 0 20px 20px}
+.back{display:block;width:100%;text-align:center;font:inherit;font-size:21px;font-weight:700;background:var(--card);border:2px solid var(--line);border-radius:16px;padding:14px;color:var(--ink);cursor:pointer}
+.back:active{background:var(--card2)}
+.box{background:#fff;border:2px solid var(--line);border-radius:18px;padding:14px 16px;margin-bottom:14px}
+.bt{display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:20px;font-weight:700}
+.bt .ico{font-size:26px;color:var(--accd)}
+.bt .u{font-size:20px}
+.lab{font-size:16px;color:var(--ink2);margin-bottom:2px}
+.val{font-size:22px;font-weight:600;margin-bottom:12px;word-break:break-word}
+.val:last-child{margin-bottom:0}
+.item{font-size:21px;padding:10px 0;border-bottom:1px solid var(--line)}
+.item:last-child{border-bottom:0}
+.act{display:flex;gap:10px;margin-top:10px}
+.act button,.pri,.sec{font:inherit;font-size:19px;border-radius:14px;padding:12px 16px;cursor:pointer;border:2px solid var(--line);background:var(--card);color:var(--ink)}
+.pri{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:700;width:100%;margin-bottom:12px}
+.sec{width:100%;margin-bottom:12px}
+.danger{color:#a02a4a!important}
+input[type=text],input[type=tel]{width:100%;font:inherit;font-size:21px;padding:14px;border:2px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);margin-bottom:12px}
+input:disabled{background:var(--card);color:var(--ink2)}
+label{display:block;font-size:17px;color:var(--ink2);margin-bottom:4px}
+.note{font-size:17px;color:var(--ink2);margin:8px 0 16px}
+.ok{color:#2a7a4b;font-size:18px;margin-top:6px;min-height:24px}
+.badge{display:inline-block;background:var(--card2);color:var(--accd);font-size:15px;font-weight:600;border-radius:10px;padding:2px 10px;margin-left:8px;vertical-align:middle}
+.sws{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sw{font:inherit;font-size:18px;background:#fff;border:3px solid var(--line);border-radius:16px;padding:12px 4px;color:var(--ink);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px}
+.sw.sel{border-color:var(--ink);font-weight:700}
+.dot{width:34px;height:34px;border-radius:50%}
+textarea{width:100%;height:120px;font:14px monospace;padding:10px;border:2px solid var(--line);border-radius:12px;margin-bottom:10px}
+#dlg{display:none;position:fixed;inset:0;background:rgba(40,30,60,.45);align-items:center;justify-content:center;padding:20px;z-index:9}
+#dlg .m{background:#fff;border-radius:20px;padding:20px;max-width:380px;width:100%}
+#dlg p{font-size:22px;margin:0 0 16px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5-2.5l5 2v4a2 2 0 0 1-2 2a16 16 0 0 1-15-15a2 2 0 0 1 2-2"/></symbol>
+<symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3C12 3 5.500 10.500 5.500 14.500a6.500 6.500 0 0 0 13 0C18.500 10.500 12 3 12 3z"/></symbol>
+<symbol id="i-pulse" viewBox="0 0 24 24"><path d="M19.500 12.600L12 20l-7.500-7.400a5 5 0 1 1 7.500-6.600a5 5 0 1 1 7.500 6.600"/><path d="M7 13h2l1.500-3l2 5l1.500-2h3"/></symbol>
+<symbol id="i-steth" viewBox="0 0 24 24"><path d="M6 4H5a2 2 0 0 0-2 2v3.500a5.500 5.500 0 0 0 11 0V6a2 2 0 0 0-2-2h-1"/><path d="M8 15a6 6 0 1 0 12 0v-3"/><circle cx="20" cy="10" r="2"/></symbol>
+<symbol id="i-cross" viewBox="0 0 24 24"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M5 12H3l9-9l9 9h-2"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/><path d="M9 21v-6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v6"/></symbol>
+<symbol id="i-id" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="M15 8h2M15 12h2M7 16h10"/></symbol>
+<symbol id="i-set" viewBox="0 0 24 24"><path d="M4 6h8M16 6h4M4 12h2M10 12h10M4 18h12M20 18h0"/><circle cx="14" cy="6" r="2"/><circle cx="8" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6l9-6"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><circle cx="12" cy="11" r="3"/><path d="M17.700 16.700l-4.300 4.200a2 2 0 0 1-2.800 0l-4.300-4.200a8 8 0 1 1 11.400 0z"/></symbol>
+<symbol id="i-mobile" viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 5h2M12 17v.01"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M16 3v4M8 3v4M4 11h16"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></symbol>
+<symbol id="i-note" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></symbol>
+<symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 1 9-9c0 2-1.500 3-3 3h-2a2 2 0 0 0-1.500 3.300c.500.700.500 2.700-2.500 2.700z"/><circle cx="7.500" cy="11" r="1"/><circle cx="11" cy="7" r="1"/><circle cx="16" cy="8" r="1"/></symbol>
+</defs></svg>
+<main>
+
+<section id="inicio" class="on full">
+  <div class="box" id="vacio" style="display:none"><div class="bt"><svg class="ico" aria-hidden="true"><use href="#i-id"/></svg><span>Aún no hay datos</span></div><div class="note" style="margin:0 0 12px">Entra a Ajustes y toca «Cargar respaldo» para cargar la ficha.</div><button class="pri" style="margin-bottom:0" data-go="ajustes">Ir a Ajustes</button></div>
+  <button class="btn big datos" data-go="datos"><span class="h rev"><span class="ic"><svg class="ico" aria-hidden="true"><use href="#i-user"/></svg></span><span class="u">Datos de<br>contacto</span></span></button>
+  <button class="btn big" data-go="contactos"><span class="h rev"><span class="ic"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg></span><span class="u">Contactos de<br>emergencia</span></span></button>
+  <div class="row">
+    <div class="col">
+      <button class="btn" data-go="dialisis"><span class="t"><span class="ic"><svg class="ico" aria-hidden="true"><use href="#i-drop"/></svg></span><span class="u">Diálisis</span></span></button>
+      <button class="btn" data-go="marcapaso"><span class="t"><span class="ic"><svg class="ico" aria-hidden="true"><use href="#i-pulse"/></svg></span><span class="u">Marcapaso</span></span></button>
+    </div>
+    <button class="btn" data-go="enfermedades"><span class="t"><span class="ic"><svg class="ico" aria-hidden="true"><use href="#i-steth"/></svg></span><span class="u">Enfermedades</span></span></button>
+  </div>
+</section>
+
+<section id="datos" class="full"><div class="panel">
+  <h2><span class="ic"><svg class="ico" aria-hidden="true"><use href="#i-user"/></svg></span><span class="u">Datos de contacto</span></h2>
+  <div class="fld"><div class="fl"><svg class="ico" aria-hidden="true"><use href="#i-user"/></svg><span>Nombre</span></div><div class="fv" id="dNombre"></div></div>
+  <div class="fld"><div class="fl"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg><span>Correo</span></div><div class="fv" id="dCorreo" style="font-size:22px"></div></div>
+  <div class="fld"><div class="fl"><svg class="ico" aria-hidden="true"><use href="#i-mobile"/></svg><span>Celular</span></div><div class="fv" id="dCel"></div></div>
+  <div class="fld"><div class="fl"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><span>Dirección</span></div><div class="fv" id="dDir"></div></div>
+  <div class="stk"><button class="back" data-go="inicio">← Volver</button></div>
+</div></section>
+
+<section id="contactos" class="full"><div class="panel">
+  <h2><span class="ic"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg></span><span class="u">Contactos de emergencia</span></h2>
+  <div id="vistaCont" style="display:flex;flex-direction:column;gap:12px;flex:1"></div>
+  <div class="stk"><button class="back" data-go="inicio">← Volver</button></div>
+</div></section>
+
+<section id="dialisis" class="full"><div class="panel"><h2><span class="ic"><svg class="ico" aria-hidden="true"><use href="#i-drop"/></svg></span><span class="u">Diálisis</span></h2><div id="vistaDialBase" style="display:contents"></div><div id="vistaDial" style="display:contents"></div><div class="stk"><button class="back" data-go="inicio">← Volver</button></div></div></section>
+
+<section id="marcapaso"><h2><span class="ic"><svg class="ico" aria-hidden="true"><use href="#i-pulse"/></svg></span><span class="u">Marcapaso</span></h2><div id="vistaMarca"></div><div class="stk"><button class="back" data-go="inicio">← Volver</button></div></section>
+
+<section id="enfermedades" class="full"><div class="panel"><h2><span class="ic"><svg class="ico" aria-hidden="true"><use href="#i-steth"/></svg></span><span class="u">Enfermedades crónicas</span></h2><div id="vistaEnf" style="display:contents"></div><div class="stk"><button class="back" data-go="inicio">← Volver</button></div></div></section>
+
+<section id="ficha">
+  <h2><span class="ic"><svg class="ico" aria-hidden="true"><use href="#i-id"/></svg></span><span class="u">Ficha completa</span></h2>
+  <div class="box" id="bxDatos">
+    <div class="val" style="font-size:26px" id="fNombre"></div>
+    <div class="lab">Celular</div><div class="val" id="fCel"></div>
+    <div class="lab">Correo</div><div class="val" id="fCorreo"></div>
+    <div class="lab">Dirección</div><div class="val" id="fDir"></div>
+  </div>
+  <div class="box" id="bxCont"><div class="bt"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg><span class="u">Contactos de emergencia</span></div><div id="fCont"></div></div>
+  <div class="box" id="bxEnf"><div class="bt"><svg class="ico" aria-hidden="true"><use href="#i-steth"/></svg><span class="u">Enfermedades crónicas</span></div><div id="fEnf"></div></div>
+  <div class="box" id="bxMed"><div class="bt"><svg class="ico" aria-hidden="true"><use href="#i-cross"/></svg><span class="u">Médico tratante</span></div><div id="fMed"></div></div>
+  <div class="box" id="bxDial"><div class="bt"><svg class="ico" aria-hidden="true"><use href="#i-drop"/></svg><span class="u">Diálisis</span></div><div id="fDial"></div><div id="fExtras"></div></div>
+  <div class="box" id="bxMarca"><div class="bt"><svg class="ico" aria-hidden="true"><use href="#i-pulse"/></svg><span class="u">Marcapaso</span></div><div id="fMarca"></div></div>
+</section>
+
+<section id="ajustes">
+  <h2><span class="ic"><svg class="ico" aria-hidden="true"><use href="#i-set"/></svg></span><span class="u">Ajustes</span></h2>
+  <div class="box">
+    <div class="bt"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg><span class="u">Contactos de emergencia</span></div>
+    <div id="listaCont"></div>
+    <button class="pri" id="btnAgregar">+ Agregar contacto</button>
+    <div class="box" id="form" style="display:none">
+      <label for="fNom">Nombre</label><input type="text" id="fNom" autocomplete="off">
+      <div class="note" id="fNote" style="display:none;margin-top:-6px">Aquí solo se cambia el número.</div>
+      <label for="fTel">Teléfono</label><input type="tel" id="fTel" inputmode="tel" autocomplete="off">
+      <button class="pri" id="btnGuardar">Guardar</button>
+      <button class="sec" id="btnCancelar">Cancelar</button>
+    </div>
+  </div>
+  <div class="box">
+    <div class="bt"><svg class="ico" aria-hidden="true"><use href="#i-drop"/></svg><span class="u">Datos extra de diálisis</span></div>
+    <div class="note" style="margin-top:0">Por ejemplo: teléfono de la clínica. Aparecen en Diálisis y en Mostrar ficha.</div>
+    <div id="exList"></div>
+    <button class="pri" id="exAdd">+ Agregar dato</button>
+    <div class="box" id="exForm" style="display:none">
+      <label for="exT">Título</label><input type="text" id="exT" placeholder="Teléfono de la clínica" autocomplete="off">
+      <label for="exV">Dato</label><input type="text" id="exV" autocomplete="off">
+      <button class="pri" id="exSave">Guardar</button>
+      <button class="sec" id="exCancel">Cancelar</button>
+    </div>
+  </div>
+  <div class="box">
+    <div class="bt"><svg class="ico" aria-hidden="true"><use href="#i-palette"/></svg><span class="u">Color de la app</span></div>
+    <div class="sws">
+      <button class="sw" data-tema="rosado"><span class="dot" style="background:#c2548a"></span>Rosado</button>
+      <button class="sw" data-tema="azul"><span class="dot" style="background:#2f6fc0"></span>Azul</button>
+      <button class="sw" data-tema="verde"><span class="dot" style="background:#2f9a5c"></span>Verde</button>
+    </div>
+  </div>
+  <div class="box">
+    <div class="bt"><svg class="ico" aria-hidden="true"><use href="#i-note"/></svg><span class="u">Respaldo</span></div>
+    <div class="note" style="margin-top:0">Guarda un archivo con todos tus datos (contactos, color y datos extra). Si cambias de celular, lo cargas de nuevo.</div>
+    <button class="pri" id="btnResp">Guardar respaldo</button>
+    <button class="sec" id="btnCarg">Cargar respaldo</button>
+    <input type="file" id="fileIn" accept=".json,application/json" style="display:none">
+    <div class="ok" id="msg"></div>
+  </div>
+</section>
+
+</main>
+<nav>
+  <button data-go="inicio" class="on"><span class="ic"><svg class="ico" aria-hidden="true"><use href="#i-home"/></svg></span>Inicio</button>
+  <button data-go="ficha"><span class="ic"><svg class="ico" aria-hidden="true"><use href="#i-id"/></svg></span>Mostrar ficha</button>
+  <button data-go="ajustes"><span class="ic"><svg class="ico" aria-hidden="true"><use href="#i-set"/></svg></span>Ajustes</button>
+</nav>
+<div id="dlg"><div class="m"><p id="dlgT"></p><button class="pri" id="dlgOk">Sí</button><button class="sec" id="dlgNo">No</button></div></div>
+
+<script>
+var KEY="mi_ficha_v1";
+function def(){return {version:2,nombre:"",correo:"",cel:"",dir:"",tema:"rosado",extras:[],contactos:[],dialisis:{},marcapaso:{electrodos:[]},enfermedades:[],medico:{}}}
+function S(x){return typeof x==="string"?x:""}
+function norm(d){
+  var o=def();
+  if(!d||typeof d!=="object")return o;
+  o.nombre=S(d.nombre);o.correo=S(d.correo);o.cel=S(d.cel);o.dir=S(d.dir);
+  if(d.tema==="azul"||d.tema==="verde"||d.tema==="rosado")o.tema=d.tema;
+  if(Array.isArray(d.extras)){for(var i=0;i<d.extras.length;i++){var x=d.extras[i];if(x&&x.t&&x.v)o.extras.push({t:String(x.t),v:String(x.v)})}}
+  if(Array.isArray(d.contactos)){for(var j=0;j<d.contactos.length;j++){var c=d.contactos[j];if(!c||!c.n||!c.t)continue;var k={n:String(c.n),t:String(c.t)};if(c.fijo){k.fijo=true;if(c.id)k.id=String(c.id)}o.contactos.push(k)}}
+  var di=d.dialisis||{};o.dialisis={lugar:S(di.lugar),direccion:S(di.direccion),dias:S(di.dias),horario:S(di.horario),nota_horario:S(di.nota_horario)};
+  var m=d.marcapaso||{};o.marcapaso={marca:S(m.marca),equipo:S(m.equipo),modelo:S(m.modelo),serie:S(m.serie),fecha_operacion:S(m.fecha_operacion),electrodos:[]};
+  if(Array.isArray(m.electrodos)){for(var e=0;e<m.electrodos.length;e++){var el=m.electrodos[e];if(el&&el.medida)o.marcapaso.electrodos.push({medida:S(el.medida),serie:S(el.serie)})}}
+  if(Array.isArray(d.enfermedades)){for(var q=0;q<d.enfermedades.length;q++){if(typeof d.enfermedades[q]==="string"&&d.enfermedades[q])o.enfermedades.push(d.enfermedades[q])}}
+  var md=d.medico||{};o.medico={nombre:S(md.nombre),institucion:S(md.institucion)};
+  return o;
+}
+function load(){try{var r=localStorage.getItem(KEY);if(r)return norm(JSON.parse(r))}catch(e){}return def()}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(D))}catch(e){}}
+var D=load(),editIdx=-1,exIdx=-1;
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function ask(t,cb){
+  $("dlgT").textContent=t;var d=$("dlg");d.style.display="flex";
+  $("dlgOk").textContent=cb?"Sí":"Entendido";$("dlgNo").style.display=cb?"block":"none";
+  $("dlgOk").onclick=function(){d.style.display="none";if(cb)cb()};
+  $("dlgNo").onclick=function(){d.style.display="none"};
+}
+var titles={inicio:"Mi ficha",datos:"Mi ficha",contactos:"Mi ficha",dialisis:"Mi ficha",marcapaso:"Mi ficha",enfermedades:"Mi ficha",ficha:"Mostrar ficha",ajustes:"Ajustes"};
+var inner=["datos","contactos","dialisis","marcapaso","enfermedades"];
+var cur="inicio";
+function show(id){
+  cur=id;var ss=document.querySelectorAll("section");for(var i=0;i<ss.length;i++)ss[i].classList.remove("on");
+  $(id).classList.add("on");
+  var nb=document.querySelectorAll("nav button");
+  for(var j=0;j<nb.length;j++){var g=nb[j].getAttribute("data-go");nb[j].classList.toggle("on",g===id||(g==="inicio"&&inner.indexOf(id)>-1))}
+  document.querySelector("main").scrollTop=0;
+}
+function go(id){
+  if(id===cur)return;
+  if(id==="inicio"){
+    if(history.state&&history.state.s&&history.state.s!=="inicio"){history.back();return}
+    show("inicio");return;
+  }
+  try{
+    if(cur==="inicio")history.pushState({s:id},"","#"+id);
+    else history.replaceState({s:id},"","#"+id);
+  }catch(e){}
+  show(id);
+}
+window.addEventListener("popstate",function(e){show((e.state&&e.state.s)||"inicio")});
+document.addEventListener("click",function(e){var b=e.target.closest("[data-go]");if(b)go(b.getAttribute("data-go"))});
+function aplicarTema(){
+  document.documentElement.setAttribute("data-t",D.tema);
+  var s=document.querySelectorAll(".sw");for(var i=0;i<s.length;i++)s[i].classList.toggle("sel",s[i].getAttribute("data-tema")===D.tema);
+}
+var IPH='<svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>';
+var INO='<svg class="ico" aria-hidden="true"><use href="#i-note"/></svg>';
+function render(){
+  $("dNombre").textContent=D.nombre;$("dCorreo").textContent=D.correo;$("dCel").textContent=D.cel;$("dDir").textContent=D.dir;
+  $("fNombre").textContent=D.nombre;$("fCel").textContent=D.cel;$("fCorreo").textContent=D.correo;$("fDir").textContent=D.dir;
+  var n=D.contactos.length,h="",f="",v="";
+  for(var i=0;i<n;i++){
+    var c=D.contactos[i];
+    h+='<div class="box"><div class="val" style="margin-bottom:4px">'+esc(c.n)+''+'</div><div class="val" style="font-weight:400;margin-bottom:0">'+esc(c.t)+'</div><div class="act"><button data-ed="'+i+'">'+(c.fijo?'Editar número':'Editar')+'</button>'+(c.fijo?'':'<button class="danger" data-del="'+i+'">Eliminar</button>')+'</div></div>';
+    f+='<div class="item"><b>'+esc(c.n)+'</b><br>'+esc(c.t)+'</div>';
+    v+='<div class="fld"><div class="fv">'+esc(c.n)+'</div><div class="fl" style="margin:8px 0 0;font-size:25px;color:var(--ink)">'+IPH+'<span>'+esc(c.t)+'</span></div></div>';
+  }
+  $("listaCont").innerHTML=h;$("fCont").innerHTML=f;$("vistaCont").innerHTML=v;
+  var eh="",ev="",ef="";
+  for(var k=0;k<D.extras.length;k++){
+    var x=D.extras[k];
+    eh+='<div class="box"><div class="lab">'+esc(x.t)+'</div><div class="val" style="margin-bottom:0">'+esc(x.v)+'</div><div class="act"><button data-exed="'+k+'">Editar</button><button class="danger" data-exdel="'+k+'">Eliminar</button></div></div>';
+    ev+='<div class="fld"><div class="fl">'+INO+'<span>'+esc(x.t)+'</span></div><div class="fv">'+esc(x.v)+'</div></div>';
+    ef+='<div class="lab">'+esc(x.t)+'</div><div class="val">'+esc(x.v)+'</div>';
+  }
+  $("exList").innerHTML=eh;$("vistaDial").innerHTML=ev;
+  renderDatos();
+}
+
+function IC(n){return '<svg class="ico" aria-hidden="true"><use href="#i-'+n+'"/></svg>'}
+function F(ic,lab,val,sm,cls){return '<div class="fld"><div class="fl">'+IC(ic)+'<span>'+esc(lab)+'</span></div><div class="fv'+(cls?' '+cls:'')+'">'+esc(val)+(sm?'<small>'+esc(sm)+'</small>':'')+'</div></div>'}
+function LV(lab,val){return '<div class="lab">'+esc(lab)+'</div><div class="val">'+esc(val)+'</div>'}
+function enfHtml(s){
+  var i=s.indexOf(":"),p=s.indexOf(" (");
+  if(i>-1)return '<b>'+esc(s.slice(0,i+1))+'</b> <span style="font-weight:400">'+esc(s.slice(i+1).trim())+'</span>';
+  if(p>-1)return '<b>'+esc(s.slice(0,p))+'</b> <span style="font-weight:400">'+esc(s.slice(p+1))+'</span>';
+  return '<b>'+esc(s)+'</b>';
+}
+function renderDatos(){
+  var di=D.dialisis,m=D.marcapaso,md=D.medico,h,i;
+  h="";
+  if(di.lugar)h+=F("drop","Lugar",di.lugar);
+  if(di.direccion)h+=F("pin","Dirección",di.direccion);
+  if(di.dias)h+=F("cal","Días",di.dias);
+  if(di.horario)h+=F("clock","Horario de diálisis",di.horario,di.nota_horario,"sm");
+  $("vistaDialBase").innerHTML=h;
+  h="";
+  if(m.marca||m.equipo||m.modelo||m.serie||m.fecha_operacion){
+    h+='<div class="box">';
+    if(m.marca)h+=LV("Marca",m.marca);if(m.equipo)h+=LV("Equipo",m.equipo);if(m.modelo)h+=LV("Modelo",m.modelo);
+    if(m.serie)h+=LV("Número de serie",m.serie);if(m.fecha_operacion)h+=LV("Fecha de implante",m.fecha_operacion);
+    h+='</div>';
+  }
+  if(m.electrodos.length){
+    h+='<div class="box"><div class="lab" style="margin-bottom:8px">Electrodos'+(m.marca?' ('+esc(m.marca)+')':'')+'</div>';
+    for(i=0;i<m.electrodos.length;i++)h+='<div class="item"><b>'+esc(m.electrodos[i].medida)+'</b>'+(m.electrodos[i].serie?'<br>Serie: '+esc(m.electrodos[i].serie):'')+'</div>';
+    h+='</div>';
+  }
+  $("vistaMarca").innerHTML=h;
+  h="";
+  for(i=0;i<D.enfermedades.length;i++)h+='<div class="fld"><div class="fv" style="font-size:24px">'+enfHtml(D.enfermedades[i])+'</div></div>';
+  if(md.nombre)h+=F("cross","Médico tratante",md.nombre,md.institucion,"md");
+  $("vistaEnf").innerHTML=h;
+  h="";for(i=0;i<D.enfermedades.length;i++)h+='<div class="item">'+enfHtml(D.enfermedades[i])+'</div>';
+  $("fEnf").innerHTML=h;$("bxEnf").style.display=h?"":"none";
+  h="";if(md.nombre)h='<div class="val">'+esc(md.nombre)+(md.institucion?' · '+esc(md.institucion):'')+'</div>';
+  $("fMed").innerHTML=h;$("bxMed").style.display=h?"":"none";
+  h="";
+  if(di.lugar)h+='<div class="val">'+esc(di.lugar)+'</div>';
+  if(di.direccion)h+=LV("Dirección",di.direccion);
+  if(di.dias)h+=LV("Días",di.dias);
+  if(di.horario)h+=LV("Horario de diálisis",di.horario);
+  $("fDial").innerHTML=h;
+  var ex="";for(i=0;i<D.extras.length;i++)ex+=LV(D.extras[i].t,D.extras[i].v);
+  $("fExtras").innerHTML=ex;$("bxDial").style.display=(h||ex)?"":"none";
+  h="";
+  if(m.marca||m.equipo)h+='<div class="val">'+esc((m.marca+" "+m.equipo).trim())+'</div>';
+  if(m.modelo||m.serie)h+=LV("Modelo / Serie",(m.modelo+(m.modelo&&m.serie?" / ":"")+m.serie));
+  if(m.fecha_operacion)h+=LV("Fecha de operación",m.fecha_operacion);
+  if(m.electrodos.length){h+='<div class="lab">Electrodos</div>';for(i=0;i<m.electrodos.length;i++)h+='<div class="item" style="font-size:18px">'+esc(m.electrodos[i].medida)+(m.electrodos[i].serie?' · '+esc(m.electrodos[i].serie):'')+'</div>'}
+  $("fMarca").innerHTML=h;$("bxMarca").style.display=h?"":"none";
+  var hayDatos=D.nombre||D.correo||D.cel||D.dir;
+  $("bxDatos").style.display=hayDatos?"":"none";
+  $("bxCont").style.display=D.contactos.length?"":"none";
+  $("vacio").style.display=(!hayDatos&&!D.contactos.length&&!D.enfermedades.length&&!di.lugar&&!m.marca)?"block":"none";
+}
+function abrirForm(i){
+  editIdx=i;var c=i>=0?D.contactos[i]:null;
+  $("fNom").value=c?c.n:"";$("fTel").value=c?c.t:"";
+  $("fNom").disabled=!!(c&&c.fijo);$("fNote").style.display=(c&&c.fijo)?"block":"none";
+  $("form").style.display="block";$("btnAgregar").style.display="none";
+  (c&&c.fijo?$("fTel"):$("fNom")).focus();
+}
+function cerrarForm(){$("form").style.display="none";$("btnAgregar").style.display="block";editIdx=-1}
+$("btnAgregar").onclick=function(){abrirForm(-1)};
+$("btnCancelar").onclick=cerrarForm;
+$("btnGuardar").onclick=function(){
+  var n=$("fNom").value.trim(),t=$("fTel").value.trim();
+  var c=editIdx>=0?D.contactos[editIdx]:null;
+  if(c&&c.fijo){if(!t){ask("Escribe el teléfono");return}c.t=t}
+  else{
+    if(!n||!t){ask("Escribe el nombre y el teléfono");return}
+    if(c){c.n=n;c.t=t}else D.contactos.push({n:n,t:t});
+  }
+  save();render();cerrarForm();
+};
+$("listaCont").addEventListener("click",function(e){
+  var ed=e.target.getAttribute("data-ed"),dl=e.target.getAttribute("data-del");
+  if(ed!==null){abrirForm(parseInt(ed,10));$("form").scrollIntoView({behavior:"smooth"})}
+  if(dl!==null){var i=parseInt(dl,10),c=D.contactos[i];if(c&&!c.fijo)ask("¿Eliminar a "+c.n+"?",function(){D.contactos.splice(i,1);save();render()})}
+});
+function abrirEx(i){exIdx=i;$("exT").value=i>=0?D.extras[i].t:"";$("exV").value=i>=0?D.extras[i].v:"";$("exForm").style.display="block";$("exAdd").style.display="none";$("exT").focus()}
+function cerrarEx(){$("exForm").style.display="none";$("exAdd").style.display="block";exIdx=-1}
+$("exAdd").onclick=function(){abrirEx(-1)};
+$("exCancel").onclick=cerrarEx;
+$("exSave").onclick=function(){
+  var t=$("exT").value.trim(),v=$("exV").value.trim();
+  if(!t||!v){ask("Escribe el título y el dato");return}
+  if(exIdx>=0)D.extras[exIdx]={t:t,v:v};else D.extras.push({t:t,v:v});
+  save();render();cerrarEx();
+};
+$("exList").addEventListener("click",function(e){
+  var ed=e.target.getAttribute("data-exed"),dl=e.target.getAttribute("data-exdel");
+  if(ed!==null){abrirEx(parseInt(ed,10));$("exForm").scrollIntoView({behavior:"smooth"})}
+  if(dl!==null){var i=parseInt(dl,10);ask("¿Eliminar «"+D.extras[i].t+"»?",function(){D.extras.splice(i,1);save();render()})}
+});
+var swb=document.querySelectorAll(".sw");
+for(var q=0;q<swb.length;q++)swb[q].onclick=function(){D.tema=this.getAttribute("data-tema");save();aplicarTema()};
+$("btnResp").onclick=function(){
+  var b=new Blob([JSON.stringify(D,null,2)],{type:"application/json"});
+  var a=document.createElement("a");a.href=URL.createObjectURL(b);
+  var d=new Date();a.download="respaldo-ficha-"+d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2)+".json";
+  document.body.appendChild(a);a.click();a.remove();
+  $("msg").textContent="Respaldo guardado en el celular (carpeta Descargas)";
+};
+$("btnCarg").onclick=function(){$("fileIn").click()};
+$("fileIn").onchange=function(){
+  var f=this.files[0];if(!f)return;
+  var r=new FileReader();
+  r.onload=function(){
+    try{var d=JSON.parse(r.result);if(!d||!d.contactos)throw 0;D=norm(d);save();aplicarTema();render();$("msg").textContent="Respaldo cargado"}
+    catch(e){$("msg").textContent="Ese archivo no sirve"}
+  };
+  r.readAsText(f);this.value="";
+};
+aplicarTema();render();
+try{if("serviceWorker" in navigator&&location.protocol.indexOf("http")===0)navigator.serviceWorker.register("./sw.js")}catch(e){}
+try{history.replaceState({s:"inicio"},"","#inicio")}catch(e){}
+</script>
+</body>
+</html>
