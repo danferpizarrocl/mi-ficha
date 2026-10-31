@@ -92,6 +92,14 @@ textarea{width:100%;height:120px;font:14px monospace;padding:10px;border:2px sol
 #splashName{font-size:30px;font-weight:700;margin-top:-8px}
 #splashVer{font-size:17px;margin-top:6px;opacity:.9}
 @keyframes splashOut{to{opacity:0;visibility:hidden}}
+details.acc{background:#fff;border:2px solid var(--line);border-radius:18px;margin-bottom:14px;overflow:hidden}
+details.acc>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:16px;font-size:20px;font-weight:700;color:var(--ink)}
+details.acc>summary::-webkit-details-marker{display:none}
+details.acc>summary::after{content:"▾";margin-left:auto;font-size:20px;color:var(--accd)}
+details.acc[open]>summary::after{content:"▴"}
+details.acc>summary .ico{font-size:26px;color:var(--accd)}
+.accb{padding:0 16px 16px}
+.accb .lab.sub{margin:10px 0 8px;font-size:17px}
 </style>
 </head>
 <body>
@@ -135,6 +143,7 @@ textarea{width:100%;height:120px;font:14px monospace;padding:10px;border:2px sol
   <div class="fld"><div class="fl"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg><span>Correo</span></div><div class="fv" id="dCorreo" style="font-size:22px"></div></div>
   <div class="fld"><div class="fl"><svg class="ico" aria-hidden="true"><use href="#i-mobile"/></svg><span>Celular</span></div><div class="fv" id="dCel"></div></div>
   <div class="fld"><div class="fl"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><span>Dirección</span></div><div class="fv" id="dDir"></div></div>
+  <div id="vistaDatosX" style="display:contents"></div>
   <div class="stk"><button class="back" data-go="inicio">← Volver</button></div>
 </div></section>
 
@@ -157,6 +166,7 @@ textarea{width:100%;height:120px;font:14px monospace;padding:10px;border:2px sol
     <div class="lab">Celular</div><div class="val" id="fCel"></div>
     <div class="lab">Correo</div><div class="val" id="fCorreo"></div>
     <div class="lab">Dirección</div><div class="val" id="fDir"></div>
+    <div id="fDatosX"></div>
   </div>
   <div class="box" id="bxCont"><div class="bt"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg><span class="u">Contactos de emergencia</span></div><div id="fCont"></div></div>
   <div class="box" id="bxEnf"><div class="bt"><svg class="ico" aria-hidden="true"><use href="#i-steth"/></svg><span class="u">Enfermedades crónicas</span></div><div id="fEnf"></div></div>
@@ -166,9 +176,8 @@ textarea{width:100%;height:120px;font:14px monospace;padding:10px;border:2px sol
 
 <section id="ajustes">
   <h2><span class="ic"><svg class="ico" aria-hidden="true"><use href="#i-set"/></svg></span><span class="u">Ajustes</span></h2>
-  <div class="box">
-    <div class="bt"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg><span class="u">Contactos de emergencia</span></div>
-    <div id="listaCont"></div>
+<details class="acc"><summary><svg class="ico" aria-hidden="true"><use href="#i-user"/></svg><span>Datos de contacto</span></summary><div class="accb"><div class="note" style="margin-top:0">Si cambias el correo o el celular, la app te pide confirmar.</div><label for="dfN">Nombre</label><input type="text" id="dfN" autocomplete="off"><label for="dfC">Correo</label><input type="text" id="dfC" inputmode="email" autocomplete="off"><label for="dfT">Celular</label><input type="tel" id="dfT" inputmode="tel" autocomplete="off"><label for="dfD">Dirección</label><input type="text" id="dfD" autocomplete="off"><button class="pri" id="dfSave">Guardar</button><div class="ok" id="dfMsg"></div><div class="lab sub">Datos extra (se ven en Datos de contacto y en Mostrar ficha)</div><div id="dxList"></div><button class="pri" id="dxAdd">+ Agregar dato</button><div class="box" id="dxForm" style="display:none"><label for="dxF1">Título</label><input type="text" id="dxF1" autocomplete="off"><label for="dxF2">Dato</label><input type="text" id="dxF2" autocomplete="off"><button class="pri" id="dxSave">Guardar</button><button class="sec" id="dxCancel">Cancelar</button></div></div></details>
+<details class="acc"><summary><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg><span>Contactos de emergencia</span></summary><div class="accb"><div id="listaCont"></div>
     <button class="pri" id="btnAgregar">+ Agregar contacto</button>
     <div class="box" id="form" style="display:none">
       <label for="fNom">Nombre</label><input type="text" id="fNom" autocomplete="off">
@@ -176,23 +185,11 @@ textarea{width:100%;height:120px;font:14px monospace;padding:10px;border:2px sol
       <label for="fTel">Teléfono</label><input type="tel" id="fTel" inputmode="tel" autocomplete="off">
       <button class="pri" id="btnGuardar">Guardar</button>
       <button class="sec" id="btnCancelar">Cancelar</button>
-    </div>
-  </div>
-  <div class="box">
-    <div class="bt"><svg class="ico" aria-hidden="true"><use href="#i-drop"/></svg><span class="u">Datos extra de diálisis</span></div>
-    <div class="note" style="margin-top:0">Por ejemplo: teléfono de la clínica. Aparecen en Diálisis y en Mostrar ficha.</div>
-    <div id="exList"></div>
-    <button class="pri" id="exAdd">+ Agregar dato</button>
-    <div class="box" id="exForm" style="display:none">
-      <label for="exT">Título</label><input type="text" id="exT" placeholder="Teléfono de la clínica" autocomplete="off">
-      <label for="exV">Dato</label><input type="text" id="exV" autocomplete="off">
-      <button class="pri" id="exSave">Guardar</button>
-      <button class="sec" id="exCancel">Cancelar</button>
-    </div>
-  </div>
-  <div class="box">
-    <div class="bt"><svg class="ico" aria-hidden="true"><use href="#i-cross"/></svg><span class="u">Médico tratante</span></div>
-    <div class="note" style="margin-top:0">Es el médico que realizó la operación del marcapaso. Se ve en Marcapaso y en Mostrar ficha.</div>
+    </div></div></details>
+<details class="acc"><summary><svg class="ico" aria-hidden="true"><use href="#i-drop"/></svg><span>Diálisis</span></summary><div class="accb"><label for="dlL">Lugar</label><input type="text" id="dlL" autocomplete="off"><label for="dlD">Dirección</label><input type="text" id="dlD" autocomplete="off"><label for="dlA">Días</label><input type="text" id="dlA" autocomplete="off"><label for="dlH">Horario de diálisis</label><input type="text" id="dlH" autocomplete="off"><label for="dlN">Nota del horario</label><input type="text" id="dlN" autocomplete="off"><button class="pri" id="dlSave">Guardar</button><div class="ok" id="dlMsg"></div><div class="lab sub">Datos extra (por ejemplo, teléfono de la clínica)</div><div id="exList"></div><button class="pri" id="exAdd">+ Agregar dato</button><div class="box" id="exForm" style="display:none"><label for="exF1">Título</label><input type="text" id="exF1" autocomplete="off"><label for="exF2">Dato</label><input type="text" id="exF2" autocomplete="off"><button class="pri" id="exSave">Guardar</button><button class="sec" id="exCancel">Cancelar</button></div></div></details>
+<details class="acc"><summary><svg class="ico" aria-hidden="true"><use href="#i-pulse"/></svg><span>Marcapaso</span></summary><div class="accb"><label for="mkM">Marca</label><input type="text" id="mkM" autocomplete="off"><label for="mkE">Equipo</label><input type="text" id="mkE" autocomplete="off"><label for="mkO">Modelo</label><input type="text" id="mkO" autocomplete="off"><label for="mkS">Número de serie</label><input type="text" id="mkS" autocomplete="off"><label for="mkF">Fecha de implante</label><input type="text" id="mkF" autocomplete="off"><button class="pri" id="mkSave">Guardar</button><div class="ok" id="mkMsg"></div><div class="lab sub">Electrodos</div><div id="elList"></div><button class="pri" id="elAdd">+ Agregar electrodo</button><div class="box" id="elForm" style="display:none"><label for="elF1">Medida (ejemplo: 4298-88 cm)</label><input type="text" id="elF1" autocomplete="off"><label for="elF2">Serie</label><input type="text" id="elF2" autocomplete="off"><button class="pri" id="elSave">Guardar</button><button class="sec" id="elCancel">Cancelar</button></div><div class="lab sub">Datos extra</div><div id="mxList"></div><button class="pri" id="mxAdd">+ Agregar dato</button><div class="box" id="mxForm" style="display:none"><label for="mxF1">Título</label><input type="text" id="mxF1" autocomplete="off"><label for="mxF2">Dato</label><input type="text" id="mxF2" autocomplete="off"><button class="pri" id="mxSave">Guardar</button><button class="sec" id="mxCancel">Cancelar</button></div></div></details>
+<details class="acc"><summary><svg class="ico" aria-hidden="true"><use href="#i-steth"/></svg><span>Enfermedades</span></summary><div class="accb"><div class="note" style="margin-top:0">Escribe cada una como «Diabetes (tipo 2)». Se ven en Enfermedades y en Mostrar ficha.</div><div id="enList"></div><button class="pri" id="enAdd">+ Agregar enfermedad</button><div class="box" id="enForm" style="display:none"><label for="enF1">Enfermedad</label><input type="text" id="enF1" autocomplete="off"><button class="pri" id="enSave">Guardar</button><button class="sec" id="enCancel">Cancelar</button></div></div></details>
+<details class="acc"><summary><svg class="ico" aria-hidden="true"><use href="#i-cross"/></svg><span>Médico tratante</span></summary><div class="accb"><div class="note" style="margin-top:0">Es el médico que realizó la operación del marcapaso. Se ve en Marcapaso y en Mostrar ficha.</div>
     <div id="medView"></div>
     <button class="pri" id="medEdit">Cambiar</button>
     <div class="box" id="medForm" style="display:none">
@@ -200,8 +197,7 @@ textarea{width:100%;height:120px;font:14px monospace;padding:10px;border:2px sol
       <label for="medI">Institución</label><input type="text" id="medI" autocomplete="off">
       <button class="pri" id="medSave">Guardar</button>
       <button class="sec" id="medCancel">Cancelar</button>
-    </div>
-  </div>
+    </div></div></details>
   <div class="box">
     <div class="bt"><svg class="ico" aria-hidden="true"><use href="#i-palette"/></svg><span class="u">Color de la app</span></div>
     <div class="sws">
@@ -212,13 +208,13 @@ textarea{width:100%;height:120px;font:14px monospace;padding:10px;border:2px sol
   </div>
   <div class="box">
     <div class="bt"><svg class="ico" aria-hidden="true"><use href="#i-note"/></svg><span class="u">Respaldo</span></div>
-    <div class="note" style="margin-top:0">Guarda un archivo con todos tus datos (contactos, color y datos extra). Si cambias de celular, lo cargas de nuevo.</div>
+    <div class="note" style="margin-top:0">Guarda un archivo con todos tus datos. Si cambias de celular, lo cargas de nuevo.</div>
     <button class="pri" id="btnResp">Guardar respaldo</button>
     <button class="sec" id="btnCarg">Cargar respaldo</button>
     <input type="file" id="fileIn" accept=".json,application/json" style="display:none">
     <div class="ok" id="msg"></div>
   </div>
-  <div class="note" id="ver" style="text-align:center;margin:0 0 8px">Versión 7</div>
+    <div class="note" id="ver" style="text-align:center;margin:0 0 8px">Versión 7</div>
 </section>
 
 </main>
@@ -230,16 +226,18 @@ textarea{width:100%;height:120px;font:14px monospace;padding:10px;border:2px sol
 <div id="dlg"><div class="m"><p id="dlgT"></p><button class="pri" id="dlgOk">Sí</button><button class="sec" id="dlgNo">No</button></div></div>
 
 <script>
-var APP_VERSION="7.1";
+var APP_VERSION="7.2";
+var LISTS=[];
 var KEY="mi_ficha_v1";
-function def(){return {version:2,nombre:"",correo:"",cel:"",dir:"",tema:"rosado",extras:[],contactos:[],dialisis:{},marcapaso:{electrodos:[]},enfermedades:[],medico:{}}}
+function def(){return {version:2,nombre:"",correo:"",cel:"",dir:"",tema:"rosado",extras:[],extras_datos:[],extras_marca:[],contactos:[],dialisis:{},marcapaso:{electrodos:[]},enfermedades:[],medico:{}}}
 function S(x){return typeof x==="string"?x:""}
+function xs(a){var r=[];if(Array.isArray(a))for(var i=0;i<a.length;i++){var x=a[i];if(x&&x.t&&x.v)r.push({t:String(x.t),v:String(x.v)})}return r}
 function norm(d){
   var o=def();
   if(!d||typeof d!=="object")return o;
   o.nombre=S(d.nombre);o.correo=S(d.correo);o.cel=S(d.cel);o.dir=S(d.dir);
   if(d.tema==="azul"||d.tema==="verde"||d.tema==="rosado")o.tema=d.tema;
-  if(Array.isArray(d.extras)){for(var i=0;i<d.extras.length;i++){var x=d.extras[i];if(x&&x.t&&x.v)o.extras.push({t:String(x.t),v:String(x.v)})}}
+  o.extras=xs(d.extras);o.extras_datos=xs(d.extras_datos);o.extras_marca=xs(d.extras_marca);
   if(Array.isArray(d.contactos)){for(var j=0;j<d.contactos.length;j++){var c=d.contactos[j];if(!c||!c.n||!c.t)continue;var k={n:String(c.n),t:String(c.t)};if(c.fijo){k.fijo=true;if(c.id)k.id=String(c.id)}o.contactos.push(k)}}
   var di=d.dialisis||{};o.dialisis={lugar:S(di.lugar),direccion:S(di.direccion),dias:S(di.dias),horario:S(di.horario),nota_horario:S(di.nota_horario)};
   var m=d.marcapaso||{};o.marcapaso={marca:S(m.marca),equipo:S(m.equipo),modelo:S(m.modelo),serie:S(m.serie),fecha_operacion:S(m.fecha_operacion),electrodos:[]};
@@ -315,8 +313,10 @@ function render(){
     ev+='<div class="fld"><div class="fl">'+INO+'<span>'+esc(x.t)+'</span></div><div class="fv">'+esc(x.v)+'</div></div>';
     ef+='<div class="lab">'+esc(x.t)+'</div><div class="val">'+esc(x.v)+'</div>';
   }
-  $("exList").innerHTML=eh;$("vistaDial").innerHTML=ev;
+  $("vistaDial").innerHTML=ev;
   renderDatos();
+  for(var li=0;li<LISTS.length;li++)LISTS[li]();
+  fillForms();
 }
 
 function IC(n){return '<svg class="ico" aria-hidden="true"><use href="#i-'+n+'"/></svg>'}
@@ -330,6 +330,8 @@ function enfHtml(s){
 }
 function renderDatos(){
   var di=D.dialisis,m=D.marcapaso,md=D.medico,h,i;
+  var xd="",xf="";for(i=0;i<D.extras_datos.length;i++){xd+=F("note",D.extras_datos[i].t,D.extras_datos[i].v);xf+=LV(D.extras_datos[i].t,D.extras_datos[i].v)}
+  $("vistaDatosX").innerHTML=xd;$("fDatosX").innerHTML=xf;
   $("medView").innerHTML=md.nombre?'<div class="box" style="margin-bottom:12px"><div class="val" style="margin-bottom:2px">'+esc(md.nombre)+'</div>'+(md.institucion?'<div class="lab" style="margin:0">'+esc(md.institucion)+'</div>':'')+'</div>':'<div class="note">Sin dato</div>';
   h="";
   if(di.lugar)h+=F("drop","Lugar",di.lugar);
@@ -350,6 +352,7 @@ function renderDatos(){
     for(i=0;i<m.electrodos.length;i++)h+='<div class="item"><b>'+esc(m.electrodos[i].medida)+'</b>'+(m.electrodos[i].serie?'<br>Serie: '+esc(m.electrodos[i].serie):'')+'</div>';
     h+='</div>';
   }
+  if(D.extras_marca.length){h+='<div class="box">';for(i=0;i<D.extras_marca.length;i++)h+=LV(D.extras_marca[i].t,D.extras_marca[i].v);h+='</div>'}
   $("vistaMarca").innerHTML=h;
   h="";
   for(i=0;i<D.enfermedades.length;i++)h+='<div class="fld"><div class="fv" style="font-size:24px">'+enfHtml(D.enfermedades[i])+'</div></div>';
@@ -370,6 +373,7 @@ function renderDatos(){
   if(m.fecha_operacion)h+=LV("Fecha de operación",m.fecha_operacion);
   if(md.nombre)h+=LV("Médico tratante",md.nombre+(md.institucion?" · "+md.institucion:""));
   if(m.electrodos.length){h+='<div class="lab">Electrodos</div>';for(i=0;i<m.electrodos.length;i++)h+='<div class="item" style="font-size:18px">'+esc(m.electrodos[i].medida)+(m.electrodos[i].serie?' · '+esc(m.electrodos[i].serie):'')+'</div>'}
+  for(i=0;i<D.extras_marca.length;i++)h+=LV(D.extras_marca[i].t,D.extras_marca[i].v);
   $("fMarca").innerHTML=h;$("bxMarca").style.display=h?"":"none";
   var hayDatos=D.nombre||D.correo||D.cel||D.dir;
   $("bxDatos").style.display=hayDatos?"":"none";
@@ -409,21 +413,52 @@ $("listaCont").addEventListener("click",function(e){
   if(ed!==null){abrirForm(parseInt(ed,10));$("form").scrollIntoView({behavior:"smooth"})}
   if(dl!==null){var i=parseInt(dl,10),c=D.contactos[i];if(c&&!c.fijo)ask("¿Eliminar a "+c.n+"?",function(){D.contactos.splice(i,1);save();render()})}
 });
-function abrirEx(i){exIdx=i;$("exT").value=i>=0?D.extras[i].t:"";$("exV").value=i>=0?D.extras[i].v:"";$("exForm").style.display="block";$("exAdd").style.display="none";$("exT").focus()}
-function cerrarEx(){$("exForm").style.display="none";$("exAdd").style.display="block";exIdx=-1}
-$("exAdd").onclick=function(){abrirEx(-1)};
-$("exCancel").onclick=cerrarEx;
-$("exSave").onclick=function(){
-  var t=$("exT").value.trim(),v=$("exV").value.trim();
-  if(!t||!v){ask("Escribe el título y el dato");return}
-  if(exIdx>=0)D.extras[exIdx]={t:t,v:v};else D.extras.push({t:t,v:v});
-  save();render();cerrarEx();
+function flash(id){$(id).textContent="Guardado";setTimeout(function(){$(id).textContent=""},2500)}
+function fillForms(){
+  $("dfN").value=D.nombre;$("dfC").value=D.correo;$("dfT").value=D.cel;$("dfD").value=D.dir;
+  var di=D.dialisis;$("dlL").value=di.lugar||"";$("dlD").value=di.direccion||"";$("dlA").value=di.dias||"";$("dlH").value=di.horario||"";$("dlN").value=di.nota_horario||"";
+  var m=D.marcapaso;$("mkM").value=m.marca||"";$("mkE").value=m.equipo||"";$("mkO").value=m.modelo||"";$("mkS").value=m.serie||"";$("mkF").value=m.fecha_operacion||"";
+}
+function mkList(p,getArr,def){
+  var idx=-1;
+  function R(){var a=getArr(),h="";for(var i=0;i<a.length;i++)h+='<div class="box"><div class="val" style="margin-bottom:0">'+def.show(a[i])+'</div><div class="act"><button data-e="'+i+'">Editar</button><button class="danger" data-d="'+i+'">Eliminar</button></div></div>';$(p+"List").innerHTML=h||'<div class="note" style="margin:0 0 10px">Sin datos</div>'}
+  function open(i){idx=i;var v=i>=0?def.toVals(getArr()[i]):["",""];$(p+"F1").value=v[0];if(def.two)$(p+"F2").value=v[1];$(p+"Form").style.display="block";$(p+"Add").style.display="none";$(p+"F1").focus()}
+  function close(){$(p+"Form").style.display="none";$(p+"Add").style.display="block";idx=-1}
+  $(p+"Add").onclick=function(){open(-1)};
+  $(p+"Cancel").onclick=close;
+  $(p+"Save").onclick=function(){
+    var a=$(p+"F1").value.trim(),b=def.two?$(p+"F2").value.trim():"";
+    if(!a||(def.need2&&!b)){ask(def.msg);return}
+    var it=def.make(a,b),arr=getArr();if(idx>=0)arr[idx]=it;else arr.push(it);
+    save();render();close();
+  };
+  $(p+"List").addEventListener("click",function(e){
+    var ed=e.target.getAttribute("data-e"),dl=e.target.getAttribute("data-d");
+    if(ed!==null){open(parseInt(ed,10));$(p+"Form").scrollIntoView({behavior:"smooth"})}
+    if(dl!==null){var i=parseInt(dl,10),arr=getArr();ask("¿Eliminar «"+def.label(arr[i])+"»?",function(){arr.splice(i,1);save();render()})}
+  });
+  LISTS.push(R);
+}
+function mkExtras(p,getArr){mkList(p,getArr,{two:true,need2:true,msg:"Escribe el título y el dato",toVals:function(x){return [x.t,x.v]},make:function(a,b){return {t:a,v:b}},show:function(x){return '<div class="lab" style="margin:0">'+esc(x.t)+'</div>'+esc(x.v)},label:function(x){return x.t}})}
+mkExtras("ex",function(){return D.extras});
+mkExtras("dx",function(){return D.extras_datos});
+mkExtras("mx",function(){return D.extras_marca});
+mkList("el",function(){return D.marcapaso.electrodos},{two:true,need2:false,msg:"Escribe la medida del electrodo",toVals:function(x){return [x.medida,x.serie]},make:function(a,b){return {medida:a,serie:b}},show:function(x){return '<b>'+esc(x.medida)+'</b>'+(x.serie?'<br>Serie: '+esc(x.serie):'')},label:function(x){return x.medida}});
+mkList("en",function(){return D.enfermedades},{two:false,msg:"Escribe la enfermedad",toVals:function(x){return [x,""]},make:function(a){return a},show:function(x){return enfHtml(x)},label:function(x){return x}});
+$("dfSave").onclick=function(){
+  var n=$("dfN").value.trim(),c=$("dfC").value.trim(),t=$("dfT").value.trim(),d=$("dfD").value.trim();
+  if(!n){ask("Escribe el nombre");return}
+  function ok(){D.nombre=n;D.correo=c;D.cel=t;D.dir=d;save();render();fitCorreo();flash("dfMsg")}
+  if(c!==D.correo||t!==D.cel)ask("¿Seguro que quieres cambiar el correo o el celular?",ok);else ok();
 };
-$("exList").addEventListener("click",function(e){
-  var ed=e.target.getAttribute("data-exed"),dl=e.target.getAttribute("data-exdel");
-  if(ed!==null){abrirEx(parseInt(ed,10));$("exForm").scrollIntoView({behavior:"smooth"})}
-  if(dl!==null){var i=parseInt(dl,10);ask("¿Eliminar «"+D.extras[i].t+"»?",function(){D.extras.splice(i,1);save();render()})}
-});
+$("dlSave").onclick=function(){
+  D.dialisis={lugar:$("dlL").value.trim(),direccion:$("dlD").value.trim(),dias:$("dlA").value.trim(),horario:$("dlH").value.trim(),nota_horario:$("dlN").value.trim()};
+  save();render();flash("dlMsg");
+};
+$("mkSave").onclick=function(){
+  var m=D.marcapaso;m.marca=$("mkM").value.trim();m.equipo=$("mkE").value.trim();m.modelo=$("mkO").value.trim();m.serie=$("mkS").value.trim();m.fecha_operacion=$("mkF").value.trim();
+  save();render();flash("mkMsg");
+};
 var swb=document.querySelectorAll(".sw");
 for(var q=0;q<swb.length;q++)swb[q].onclick=function(){D.tema=this.getAttribute("data-tema");save();aplicarTema()};
 $("btnResp").onclick=function(){
